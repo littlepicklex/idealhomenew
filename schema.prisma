@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -25,13 +25,13 @@ model User {
 model Property {
   id              String   @id @default(cuid())
   title           String
-  price           Float
+  price           Decimal
   sqft            Int
   yearBuilt       Int      @map("year_built")
   beds            Int
   baths           Int
-  lat             Float
-  lng             Float
+  lat             Decimal
+  lng             Decimal
   type            String
   locationScore   Float    @map("location_score")
   safetyScore     Float    @map("safety_score")
