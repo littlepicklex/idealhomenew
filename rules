@@ -1,0 +1,40 @@
+# Product Context
+- Project: Ideal Home Finder
+- Goal: Help US-based home buyers find their “ideal house” through filters + wizard + AI-powered scoring.
+- Must be simple, intuitive, and trustworthy.
+
+# Tech Stack
+- Next.js App Router + TypeScript for frontend.
+- API: Next.js route handlers (app/api).
+- Database: Prisma with SQLite (dev), option to switch to Postgres later.
+- Auth: JWT httpOnly cookies, bcrypt password hashing.
+- Map integration: Mapbox GL.
+- Styling: Tailwind CSS + shadcn/ui.
+
+# Core Features
+- Pages: "/", "/wizard", "/properties", "/property/[id]", "/login", "/register", "/profile".
+- API routes:
+  - GET /api/facets → return min/max values for filters
+  - GET /api/properties → with filters, cursor pagination, sorted by ideality_score
+  - GET /api/properties/[id] → property detail + score breakdown
+  - POST /api/favorites → add/remove favorite (auth)
+  - GET /api/favorites → list user favorites
+- Components: PropertyCard (with ideality_score badge), PropertyDetailPage (with breakdown chart).
+- Wizard: multi-step form that sets user preferences and weights for scoring.
+- Ideality Score: function computing affordability, location, features, safety, schools, commute. Always return breakdown (0–100).
+- Favorites system per user.
+- PDF export for a property report.
+
+# Quality Standards
+- Use TypeScript everywhere.
+- Validate all API inputs with zod.
+- Use ESLint + Prettier.
+- Write at least unit tests (Vitest) for scoring function and Playwright smoke tests for user flow (register → login → wizard → properties → favorite → profile).
+- UI should be responsive and clean, use shadcn/ui components (Card, Button, Input, etc.).
+
+# Security
+- Store JWT in httpOnly cookies, never localStorage.
+- Hash passwords with bcrypt.
+- Protect /profile and /api/favorites with middleware.
+- Add basic rate limiting on APIs (especially /api/properties).
+- Sanitize all inputs and outputs.

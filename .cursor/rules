@@ -1,0 +1,103 @@
+# Cursor Rules for PropertyFinder Pro
+
+## Project Overview
+This is a Next.js 14 property listing application with:
+- Prisma ORM with SQLite (dev) / PostgreSQL (prod)
+- JWT authentication with httpOnly cookies
+- Property ideality scoring system
+- Interactive maps with Mapbox
+- PDF report generation
+- Comprehensive Playwright test suite
+
+## Code Style & Standards
+
+### TypeScript
+- Use strict TypeScript with proper typing
+- Prefer interfaces over types for object shapes
+- Use Zod for runtime validation
+- Export types from dedicated files when reused
+
+### React/Next.js
+- Use App Router (app directory)
+- Prefer Server Components when possible
+- Use Client Components only for interactivity
+- Follow Next.js 14 best practices
+- Use proper error boundaries
+
+### Database
+- Use Prisma for all database operations
+- Follow naming conventions: camelCase for fields, PascalCase for models
+- Use proper relations and constraints
+- Include createdAt/updatedAt timestamps
+
+### API Routes
+- Use proper HTTP status codes
+- Validate inputs with Zod schemas
+- Handle errors gracefully
+- Use consistent response formats
+- Protect routes with authentication middleware
+
+### Authentication
+- Use JWT with httpOnly cookies
+- Hash passwords with bcrypt
+- Implement proper session management
+- Protect sensitive routes
+
+### Styling
+- Use Tailwind CSS for styling
+- Follow mobile-first approach
+- Use shadcn/ui components when available
+- Maintain consistent design system
+
+### Testing
+- Write comprehensive Playwright tests
+- Test user flows end-to-end
+- Mock external APIs in tests
+- Use proper test data and cleanup
+
+## File Organization
+
+### App Directory Structure
+```
+app/
+├── (marketing)/          # Marketing pages
+├── api/                  # API routes
+├── wizard/              # Property wizard
+├── properties/          # Property listings
+├── property/[id]/       # Property details
+├── login/               # Authentication
+├── register/
+├── profile/             # User profile (protected)
+└── globals.css          # Global styles
+```
+
+### Components
+- Place reusable components in `components/`
+- Use descriptive names with proper TypeScript interfaces
+- Follow single responsibility principle
+- Export components as default
+
+### Utilities
+- Place utility functions in `lib/`
+- Use proper error handling
+- Document complex functions
+- Keep functions pure when possible
+
+## Security Guidelines
+- Never commit secrets or API keys
+- Use environment variables for configuration
+- Validate all user inputs
+- Implement proper CORS policies
+- Use HTTPS in production
+
+## Performance
+- Optimize images with Next.js Image component
+- Use proper caching strategies
+- Implement lazy loading where appropriate
+- Monitor bundle size
+
+## Error Handling
+- Use proper error boundaries
+- Log errors appropriately
+- Provide user-friendly error messages
+- Handle network failures gracefully
