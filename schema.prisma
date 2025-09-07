@@ -25,13 +25,13 @@ model User {
 model Property {
   id              String   @id @default(cuid())
   title           String
-  price           Decimal
+  price           Float
   sqft            Int
   yearBuilt       Int      @map("year_built")
   beds            Int
   baths           Int
-  lat             Decimal
-  lng             Decimal
+  lat             Float
+  lng             Float
   type            String
   locationScore   Float    @map("location_score")
   safetyScore     Float    @map("safety_score")

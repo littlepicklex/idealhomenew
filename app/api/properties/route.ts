@@ -97,8 +97,16 @@ export async function GET(request: NextRequest) {
     // Get the cursor for the next page
     const nextCursor = hasMore ? properties[properties.length - 1]?.id : null;
     
+    // Convert Decimal fields to numbers
+    const convertedProperties = properties.map(property => ({
+      ...property,
+      price: Number(property.price),
+      lat: Number(property.lat),
+      lng: Number(property.lng),
+    }));
+
     return NextResponse.json({
-      properties,
+      properties: convertedProperties,
       pagination: {
         hasMore,
         nextCursor,

@@ -28,7 +28,12 @@ export async function GET(request: NextRequest) {
     });
 
     return NextResponse.json({
-      favorites: favorites.map(fav => fav.property),
+      favorites: favorites.map(fav => ({
+        ...fav.property,
+        price: Number(fav.property.price),
+        lat: Number(fav.property.lat),
+        lng: Number(fav.property.lng),
+      })),
     });
   } catch (error) {
     console.error('Error fetching favorites:', error);

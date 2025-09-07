@@ -18,8 +18,8 @@ export async function GET() {
     });
 
     const result = {
-      minPrice: facets._min.price || 0,
-      maxPrice: facets._max.price || 0,
+      minPrice: facets._min.price ? Number(facets._min.price) : 0,
+      maxPrice: facets._max.price ? Number(facets._max.price) : 0,
       minSqft: facets._min.sqft || 0,
       maxSqft: facets._max.sqft || 0,
       minYear: facets._min.yearBuilt || 1900,

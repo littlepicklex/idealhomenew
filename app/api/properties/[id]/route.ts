@@ -20,12 +20,20 @@ export async function GET(
       );
     }
 
+    // Convert Decimal to number for computeIdeality
+    const propertyData = {
+      ...property,
+      price: Number(property.price),
+      lat: Number(property.lat),
+      lng: Number(property.lng),
+    };
+
     // Calculate ideality score and breakdown
-    const idealityResult = computeIdeality(property);
+    const idealityResult = computeIdeality(propertyData);
 
     // Return property with score breakdown
     const result = {
-      ...property,
+      ...propertyData,
       idealityScore: idealityResult.score,
       scoreBreakdown: idealityResult.breakdown,
     };
