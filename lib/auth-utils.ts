@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 import { z } from 'zod';
 
 // JWT configuration
@@ -53,9 +53,14 @@ export function generateToken(userId: string, email: string): string {
     email,
   };
 
-  return jwt.sign(payload, JWT_SECRET, {
-    expiresIn: JWT_EXPIRES_IN,
-  });
+  const secret = process.env.JWT_SECRET || 'fallback-secret-key';
+  const expiresIn = process.env.JWT_EXPIRES_IN || '7d';
+
+  const options: SignOptions = {
+    expiresIn: expiresIn as any,
+  };
+
+  return jwt.sign(payload, secret, options);
 }
 
 /**
@@ -63,7 +68,8 @@ export function generateToken(userId: string, email: string): string {
  */
 export function verifyToken(token: string): JWTPayload | null {
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload;
+    const secret = process.env.JWT_SECRET || 'fallback-secret-key';
+    const decoded = jwt.verify(token, secret) as JWTPayload;
     return JWTPayloadSchema.parse(decoded);
   } catch (error) {
     return null;

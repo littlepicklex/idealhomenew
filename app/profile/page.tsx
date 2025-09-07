@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import PropertyCard from '@/components/PropertyCard';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { HeartIcon, UserIcon, CalendarIcon, LogoutIcon } from '@heroicons/react/24/outline';
+import { HeartIcon, UserIcon, CalendarIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 
 interface Property {
@@ -151,7 +151,7 @@ export default function ProfilePage() {
               variant="outline"
               className="flex items-center"
             >
-              <LogoutIcon className="w-4 h-4 mr-2" />
+              <ArrowRightOnRectangleIcon className="w-4 h-4 mr-2" />
               Logout
             </Button>
           </div>

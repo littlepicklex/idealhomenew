@@ -189,13 +189,6 @@ test.describe('Complete User Flow: Register → Login → Wizard → Properties 
     await expect(page.locator('[data-testid="property-description"]')).toBeVisible();
     await expect(page.locator('[data-testid="ideality-score-breakdown"]')).toBeVisible();
 
-    // Test PDF report generation
-    const downloadButton = page.locator('button:has-text("Download PDF")');
-    if (await downloadButton.isVisible()) {
-      // Note: In a real test, you might want to mock the PDF generation
-      // or test it in a separate test to avoid long execution times
-      console.log('PDF download button is available');
-    }
 
     // Step 7: Navigate to Profile
     console.log('Step 7: Navigate to Profile');

@@ -10,7 +10,6 @@ A comprehensive property listing application with intelligent scoring, interacti
 - **User Authentication**: JWT-based auth with httpOnly cookies
 - **Property Wizard**: Multi-step preference collection
 - **Favorites System**: Save and manage favorite properties
-- **PDF Reports**: Generate detailed property reports
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
 
 ## 🚀 Tech Stack
@@ -120,8 +119,6 @@ NODE_ENV="development"
 - `GET /api/favorites` - Get user favorites (auth required)
 - `POST /api/favorites` - Add/remove favorite (auth required)
 
-### Reports
-- `GET /api/report/[id]` - Generate PDF report for property
 
 ## 🧪 Testing
 

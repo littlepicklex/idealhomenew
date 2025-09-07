@@ -122,9 +122,6 @@ export const apiEndpoints = {
     add: '/api/favorites',
     remove: '/api/favorites',
   },
-  reports: {
-    generate: '/api/report/[id]',
-  },
 };
 
 export const testSelectors = {

@@ -2,11 +2,10 @@
 
 ## Project Overview
 This is a Next.js 14 property listing application with:
-- Prisma ORM with SQLite (dev) / PostgreSQL (prod)
+y- Prisma ORM with SQLite (dev) / PostgreSQL (prod)
 - JWT authentication with httpOnly cookies
 - Property ideality scoring system
 - Interactive maps with Mapbox
-- PDF report generation
 - Comprehensive Playwright test suite
 
 ## Code Style & Standards

@@ -23,7 +23,6 @@
 - Wizard: multi-step form that sets user preferences and weights for scoring.
 - Ideality Score: function computing affordability, location, features, safety, schools, commute. Always return breakdown (0–100).
 - Favorites system per user.
-- PDF export for a property report.
 
 # Quality Standards
 - Use TypeScript everywhere.

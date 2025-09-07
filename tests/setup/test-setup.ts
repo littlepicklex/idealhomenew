@@ -1,4 +1,4 @@
-import { test as base, expect } from '@playwright/test';
+import { test as base, expect, Page } from '@playwright/test';
 import { TestHelpers } from '../utils/test-helpers';
 
 // Extend the base test with custom fixtures
@@ -11,7 +11,7 @@ export const test = base.extend<{
     await use(helpers);
   },
 
-  authenticatedPage: async ({ page, helpers }, use) => {
+  authenticatedPage: async ({ page, helpers }: { page: Page; helpers: TestHelpers }, use: any) => {
     // Login before each test that uses this fixture
     const testEmail = helpers.generateTestEmail();
     const testPassword = helpers.generateTestPassword();

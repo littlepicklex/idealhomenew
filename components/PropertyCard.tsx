@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { HeartIcon, MapPinIcon, HomeIcon, BathroomIcon, CalendarIcon } from '@heroicons/react/24/outline';
+import { HeartIcon, MapPinIcon, HomeIcon, CalendarIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 
 interface Property {
@@ -134,10 +134,10 @@ export default function PropertyCard({
               <HomeIcon className="w-4 h-4 mr-2 text-gray-400" />
               <span>{property.beds} bed{property.beds !== 1 ? 's' : ''}</span>
             </div>
-            <div className="flex items-center text-sm text-gray-600">
-              <BathroomIcon className="w-4 h-4 mr-2 text-gray-400" />
-              <span>{property.baths} bath{property.baths !== 1 ? 's' : ''}</span>
-            </div>
+                <div className="flex items-center text-sm text-gray-600">
+                  <HomeIcon className="w-4 h-4 mr-2 text-gray-400" />
+                  <span>{property.baths} bath{property.baths !== 1 ? 's' : ''}</span>
+                </div>
             <div className="flex items-center text-sm text-gray-600">
               <HomeIcon className="w-4 h-4 mr-2 text-gray-400" />
               <span>{property.sqft.toLocaleString()} sqft</span>

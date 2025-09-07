@@ -7,10 +7,8 @@ import {
   HeartIcon, 
   MapPinIcon, 
   HomeIcon, 
-  BathroomIcon, 
   CalendarIcon,
-  ShareIcon,
-  PrinterIcon
+  ShareIcon
 } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -52,7 +50,6 @@ export default function PropertyDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isFavorited, setIsFavorited] = useState(false);
-  const [isGeneratingReport, setIsGeneratingReport] = useState(false);
 
   useEffect(() => {
     const fetchProperty = async () => {
@@ -105,34 +102,6 @@ export default function PropertyDetailPage() {
     }
   };
 
-  const handleGenerateReport = async () => {
-    if (!property) return;
-    
-    try {
-      setIsGeneratingReport(true);
-      const response = await fetch(`/api/report/${property.id}`);
-      
-      if (!response.ok) {
-        throw new Error('Failed to generate report');
-      }
-      
-      // Create blob and download
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `property-report-${property.id}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
-    } catch (err) {
-      console.error('Error generating report:', err);
-      alert('Failed to generate PDF report. Please try again.');
-    } finally {
-      setIsGeneratingReport(false);
-    }
-  };
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -226,16 +195,6 @@ export default function PropertyDetailPage() {
               <button className="p-2 text-gray-600 hover:text-gray-900 transition-colors">
                 <ShareIcon className="w-5 h-5" />
               </button>
-              <Button
-                onClick={handleGenerateReport}
-                disabled={isGeneratingReport}
-                variant="outline"
-                size="sm"
-                className="flex items-center space-x-2"
-              >
-                <PrinterIcon className="w-4 h-4" />
-                <span>{isGeneratingReport ? 'Generating...' : 'Download PDF'}</span>
-              </Button>
               <button
                 onClick={handleFavorite}
                 className="p-2 text-gray-600 hover:text-red-500 transition-colors"
@@ -311,7 +270,7 @@ export default function PropertyDetailPage() {
                 
                 <div className="text-center">
                   <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                    <BathroomIcon className="w-6 h-6 text-green-600" />
+                    <HomeIcon className="w-6 h-6 text-green-600" />
                   </div>
                   <div className="text-2xl font-bold text-gray-900">{property.baths}</div>
                   <div className="text-sm text-gray-600">Bathrooms</div>
