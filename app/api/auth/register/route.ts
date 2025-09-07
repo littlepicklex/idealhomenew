@@ -47,6 +47,11 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error('Registration error:', error);
+    console.error('Registration error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      name: error instanceof Error ? error.name : undefined,
+    });
     
     if (error instanceof z.ZodError) {
       return NextResponse.json(
@@ -56,7 +61,11 @@ export async function POST(request: NextRequest) {
     }
     
     return NextResponse.json(
-      { error: 'Registration failed' },
+      { 
+        error: 'Registration failed',
+        details: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined
+      },
       { status: 500 }
     );
   }

@@ -29,8 +29,17 @@ export async function GET() {
     return NextResponse.json(result);
   } catch (error) {
     console.error('Error fetching facets:', error);
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined,
+      name: error instanceof Error ? error.name : undefined,
+    });
     return NextResponse.json(
-      { error: 'Failed to fetch facets' },
+      { 
+        error: 'Failed to fetch facets',
+        details: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined
+      },
       { status: 500 }
     );
   }
